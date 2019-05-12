@@ -13,9 +13,9 @@ The second argument is the type of socket. SOCK_STREAM means that data or charac
 server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 if len(sys.argv) != 3:
     print "Correct usage: script, IP address, port number"
-    exit()
-IP_address = str(sys.argv[1])
-Port = int(sys.argv[2])
+#    exit()
+IP_address = '127.0.0.1'#str(sys.argv[1])
+Port = 8080#int(sys.argv[2])
 server.bind((IP_address, Port)) 
 #binds the server to an entered IP address and at the specified port number. The client must be aware of these parameters
 server.listen(100)
@@ -23,13 +23,13 @@ server.listen(100)
 list_of_clients=[]
 
 def clientthread(conn, addr):
-    conn.send("Welcome to this chatroom!")
+#    conn.send("Welcome to this chatroom!")
     #sends a message to the client whose user object is conn
     while True:
             try:     
                 message = conn.recv(2048)    
                 if message:
-                    print "<" + addr[0] + "> " + message
+                    print "<" + ' '.join(map(str, addr)) + "> " + message
                     message_to_send = "<" + addr[0] + "> " + message
                     broadcast(message_to_send,conn)
                     #prints the message and address of the user who just sent the message on the server terminal
