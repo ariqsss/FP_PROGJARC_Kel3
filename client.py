@@ -4,26 +4,24 @@ import sys
 import msvcrt
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-if len(sys.argv) != 3:
-    print "Correct usage: script, IP address, port number"
-#    exit()
-IP_address = '127.0.0.1'#str(sys.argv[1])
-Port = 8080#int(sys.argv[2])
+
+IP_address = '127.0.0.1'
+Port = 8080
 server.connect((IP_address, Port))
 
 while True:
     sockets_list = [server]
     read_sockets, write_socket, error_socket = select.select(sockets_list, [], [], 1)
     if msvcrt.kbhit:
-        print "Enter message:"
+#        print ("Enter message:")
         read_sockets.append(sys.stdin)
     for socks in read_sockets:
         if socks == server:
             message = socks.recv(2048)
-            print message
+            print (str(message, 'utf-8'))
         else:
             message = sys.stdin.readline()
-            server.send(message)
+            server.send(bytes(message, 'utf-8'))
             sys.stdout.write("<You>")
             sys.stdout.write(message)
             sys.stdout.flush()
