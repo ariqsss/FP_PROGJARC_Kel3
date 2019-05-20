@@ -15,6 +15,16 @@ server.bind((IP_address, Port))
 server.listen(100)
 
 list_of_clients=[]
+IParray = ['']
+
+def client(IP):
+    if IP not in IParray:
+        IParray.append(IP)
+        IPclient = "Client" + str((len(IParray) - 1 - IParray[::-1].index(IP)))
+        return IPclient
+    elif IP in IParray:
+        IPclient = "Client" + str(IParray.index(IP))
+        return IPclient
 
 def clientthread(conn, addr):
     conn.send(bytes("Welcome to this chatroom!", 'utf-8'))
@@ -23,10 +33,10 @@ def clientthread(conn, addr):
             try:     
                 message = conn.recv(2048)
                 if message:
-                    print ("<" + ' '.join(map(str, addr)) + "> " + str(message, 'utf-8'))
-                    message_to_send = "<" + addr[0] + "> " + str(message, 'utf-8')
+                    idclient = client(addr)
+                    print ("<" + idclient + "> " + str(message, 'utf-8'))
+                    message_to_send = "<" + idclient + "> " + str(message, 'utf-8')
                     broadcast(message_to_send,conn)
-
                 else:
                     remove(conn)
             except:
@@ -49,7 +59,8 @@ while True:
     conn, addr = server.accept()
 
     list_of_clients.append(conn)
-    print (addr[0] + " connected")
+    idclient = client(addr)
+    print (idclient + " connected")
 
     threading.Thread(target=clientthread,args=(conn,addr)).start()
 
