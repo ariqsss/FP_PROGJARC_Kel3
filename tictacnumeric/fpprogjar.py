@@ -8,7 +8,9 @@ def tictac():
           (7,8,9),
           (1,4,7),
           (2,5,8),
-          (3,6,9)
+          (3,6,9),
+          (1,5,9),
+          (3,5,7)
     ]
 
     def draw():
@@ -17,25 +19,41 @@ def tictac():
         print(board[7], board[8], board[9])
         print()
 
-    def check_number(b):
+    def check_number(b, flag):
         if b > 0 and b < 10:
             if b not in number:
-                number.append(b)
-                return True
+                if flag == 0 and (b % 2) == 0:
+                    number.append(b)
+                    return True
+                elif flag == 1 and (b % 2) == 1:
+                    number.append(b)
+                    return True
+                else:
+                    return ("\nYou must insert the opposite (Odd/Even) number. Try again")
             elif b in number:
                 return ("\nNumber already exist. Try again")
         else:
             return ("\nIncorrect number. Try again")
 
     def choose_number():
+        flag = 0
+
+        def change_flag(flag):
+            if (flag == 0):
+                flag = 1
+            elif (flag == 1):
+                flag = 0
+            return flag
+
         while True:
             try:
                 draw()
                 a = int(input())
                 if a in board:
                     b = int(input("Pick your number:"))
-                    number_validation = check_number(b)
+                    number_validation = check_number(b, flag)
                     if (number_validation == True):
+                        flag = change_flag(flag)
                         return a,b
                     else:
                         print(number_validation)
