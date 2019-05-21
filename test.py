@@ -1,3 +1,4 @@
+"""
 array=['']
 
 tes = 'ses'
@@ -14,3 +15,16 @@ def client(IP):
 
 lol = client('boi')
 print (array)
+
+print (list(range(0,7)))
+board = [None] + list(range(1, 10))
+
+print(board[7], board[8], board[9])
+print(board[4], board[5], board[6])
+print(board[1], board[2], board[3])
+print()
+"""
+
+b=int(input())
+if b > 9:
+    print("tada")

@@ -1,6 +1,7 @@
 def tictac():
     finish=0
     board = [None] + list(range(1, 10))
+    number = []
     sets=[
           (1,2,3),
           (4,5,6),
@@ -8,24 +9,39 @@ def tictac():
           (1,4,7),
           (2,5,8),
           (3,6,9)
-            ]
+    ]
+
     def draw():
-        print(board[7], board[8], board[9])
-        print(board[4], board[5], board[6])
         print(board[1], board[2], board[3])
+        print(board[4], board[5], board[6])
+        print(board[7], board[8], board[9])
         print()
+
+    def check_number(b):
+        if b > 0 and b < 10:
+            if b not in number:
+                number.append(b)
+                return True
+            elif b in number:
+                return ("\nNumber already exist. Try again")
+        else:
+            return ("\nIncorrect number. Try again")
 
     def choose_number():
         while True:
             try:
                 draw()
                 a = int(input())
-                print("pick your number")
-                b = int(input())
                 if a in board:
-                    return a,b
+                    b = int(input("Pick your number:"))
+                    number_validation = check_number(b)
+                    if (number_validation == True):
+                        return a,b
+                    else:
+                        print(number_validation)
                 else:
-                    print("\nInvalid move. Try again")
+                    print("\nField already taken. Try again")
+
             except ValueError:
                print("\nThat's not a number. Try again")
 
@@ -34,9 +50,8 @@ def tictac():
         if finish == 9:
             print("game over\n")
             return True
+
     def calculate():
-        scorex=0
-        scoreo=0
         maxx=0
         maxo=0
         
@@ -60,7 +75,7 @@ def tictac():
             if scoreo>maxo:
                 maxo=scoreo
             print("%d %d %d : X= %d O= %d"%(a,b,c,scorex,scoreo))
-        print("X highest:%d O highest:%d"%(maxx,maxo))
+        print("Player X highest score:%d\nPlayer O highest score:%d"%(maxx,maxo))
         if(maxx>maxo):
             print("X wins the game")
         if(maxo>maxx):
