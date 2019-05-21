@@ -1,3 +1,5 @@
+flag = 1
+
 def tictac():
     finish=0
     board = [None] + list(range(1, 10))
@@ -28,15 +30,16 @@ def tictac():
                 elif flag == 1 and (b % 2) == 1:
                     number.append(b)
                     return True
-                else:
-                    return ("\nYou must insert the opposite (Odd/Even) number. Try again")
+                elif flag == 0 and (b % 2) == 1:
+                    return ("\nYou must insert the opposite (Even) number. Try again")
+                elif flag == 1 and (b % 2) == 0:
+                    return ("\nYou must insert the opposite (Odd) number. Try again")
             elif b in number:
                 return ("\nNumber already exist. Try again")
         else:
             return ("\nIncorrect number. Try again")
 
     def choose_number():
-        flag = 0
 
         def change_flag(flag):
             if (flag == 0):
@@ -48,6 +51,7 @@ def tictac():
         while True:
             try:
                 draw()
+                global flag
                 a = int(input())
                 if a in board:
                     b = int(input("Pick your number:"))
