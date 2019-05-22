@@ -53,16 +53,19 @@ def tictac():
                 draw()
                 global flag
                 a = int(input())
-                if a in board:
-                    b = int(input("Pick your number:"))
-                    number_validation = check_number(b, flag)
-                    if (number_validation == True):
-                        flag = change_flag(flag)
-                        return a,b
+                if a > 0 and a < 10:
+                    if a in board:
+                        b = int(input("Pick your number:"))
+                        number_validation = check_number(b, flag)
+                        if (number_validation == True):
+                            flag = change_flag(flag)
+                            return a,b
+                        else:
+                            print(number_validation)
                     else:
-                        print(number_validation)
+                        print("\nField already taken. Try again")
                 else:
-                    print("\nField already taken. Try again")
+                    print("\nField not exist. Try again")
 
             except ValueError:
                print("\nThat's not a number. Try again")
@@ -102,12 +105,10 @@ def tictac():
             print("X wins the game")
         if(maxo>maxx):
             print("O wins the game")
-        
-                
-        
+        if(maxx==maxo):
+            print("The game draw")
         
     for player in 'XO' * 9:
-        
         draw()
         if is_game_over():
             calculate()
@@ -118,9 +119,6 @@ def tictac():
         board[a] = player+c
         finish+=1
         print()
-
-
-
 
 while True:
     tictac()
