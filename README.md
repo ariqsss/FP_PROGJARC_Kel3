@@ -18,4 +18,5 @@ Muhammad Aufa Wibowo    5111640000184
 
 Description :
 Numerical Tic-tac-toe
+
 Numerical Tic Tac Toe adalah variasi dari tictactoe yang dibuat oleh ahli matematika Ronald Graham. Angka yang digunakan 1-9 bilangan. Player pertama menggunakan angka ganjil dan player kedua menggunakan angka genap. Semua angka hanya dapat digunakan sekali.
