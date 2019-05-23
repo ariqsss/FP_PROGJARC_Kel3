@@ -33,9 +33,9 @@ def clientthread(conn, addr):
     while True:
             try:     
                 message = conn.recv(2048)
-                state = pickle.loads(message)
-                print ("State:\n")
-                print (state)
+                #state = pickle.loads(message)
+                #print ("State:\n")
+                #print (state)
                 if message:
                     idclient = client(addr)
                     print ("<" + idclient + "> " + str(message, 'utf-8'))

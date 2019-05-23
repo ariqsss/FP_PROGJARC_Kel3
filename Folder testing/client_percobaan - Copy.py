@@ -135,41 +135,42 @@ IP_address = '127.0.0.1'
 Port = 8080
 server.connect((IP_address, Port))
 
-decision = input("Play the game?(Y/n)")
-if decision == "Y":
-    while True:
-        sockets_list = [server]
-        read_sockets, write_socket, error_socket = select.select(sockets_list, [], [], 1)
-        if msvcrt.kbhit:
-#           print ("Enter message:")
-            read_sockets.append(sys.stdin)
-        for socks in read_sockets:
-            if socks == server:
-                message = socks.recv(2048)
-                print (str(message, 'utf-8'))
-            else:
-                #while True
-                for player in 'XO' * 9:
-                    draw()
-                    if is_game_over():
-                        calculate()
-                        sys.exit()
-                    print("Player {0} pick your move".format(player))
-                    #field = int(input())
-                    #value = int(input("Pick your number:"))
-                    a, b = choose_number()
-                    c = str(b)
-                    board[a] = player + c
-                    finish += 1
-                    print()
+#decision = input("Play the game?(Y/n)")
+#if decision == "Y":
+while True:
+    sockets_list = [server]
+    read_sockets, write_socket, error_socket = select.select(sockets_list, [], [], 1)
+    if msvcrt.kbhit:
+#       print ("Enter message:")
+        read_sockets.append(sys.stdin)
+    for socks in read_sockets:
+        if socks == server:
+            message = socks.recv(2048)
+            print (str(message, 'utf-8'))
+        else:
+            #while True
+            #for player in 'XO' * 9:
+            draw()
+            if is_game_over():
+                calculate()
+                sys.exit()
+            print("Player X pick your move")
+            # field = int(input())
+            # value = int(input("Pick your number:"))
+            a, b = choose_number()
+            c = str(b)
+            board[a] = "X" + c
+            finish += 1
+            print()
 
-                    message = pickle.dumps(board)
-                    server.send(message)
-                    sys.stdout.write("<You>")
-                    sys.stdout.write(str(message))
-                    sys.stdout.write("\n")
-                    sys.stdout.flush()
+            message = pickle.dumps(board)
+            server.send(message)
+            sys.stdout.write("<You>")
+            sys.stdout.write(str(message))
+            sys.stdout.write("\n")
+            sys.stdout.flush()
 
-    server.close()
-elif decision == "n":
-    sys.exit()
+server.close()
+
+#elif decision == "n":
+#    sys.exit()
