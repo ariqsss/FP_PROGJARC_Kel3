@@ -36,9 +36,10 @@ def clientthread(conn, addr):
                 #state = pickle.loads(message)
                 #print ("State:\n")
                 #print (state)
+                #print (str(message))
                 if message:
                     idclient = client(addr)
-                    print ("<" + idclient + "> " + str(message, 'utf-8'))
+                    print ("<" + idclient + "> " + str(message))
                     message_to_send = "<" + idclient + "> " + str(message, 'utf-8')
                     broadcast(message_to_send,conn)
                 else:
