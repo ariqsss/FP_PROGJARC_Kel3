@@ -82,7 +82,7 @@ def main():
 
             if not usedBoxes[boxx][boxy] and mouseClicked and playerTurnDone == False:
                 markBoxX(boxx, boxy, mainFont)
-                BEEP1.play()
+                #BEEP1.play()
                 usedBoxes[boxx][boxy] = True
                 mainBoard[boxx][boxy] = XMARK
                 playerTurnDone = True
@@ -93,7 +93,7 @@ def main():
                 pygame.time.wait(500)
                 boxx, boxy = computerTurnWithAI(usedBoxes, mainBoard)
                 markBoxO(boxx, boxy, mainFont)
-                BEEP2.play()
+                #BEEP2.play()
                 usedBoxes[boxx][boxy] = True
                 mainBoard[boxx][boxy] = OMARK
                 playerTurnDone = False
@@ -105,7 +105,7 @@ def main():
         if playerWins:
             pygame.time.wait(500)
             highlightWin(mainBoard)
-            BEEP3.play()
+            #BEEP3.play()
             pygame.display.update()
             playerScore += 1
             usedBoxes, mainBoard, playerTurnDone, playerWins, computerWins = boardReset(usedBoxes, mainBoard, playerTurnDone, playerWins, computerWins)
@@ -115,7 +115,7 @@ def main():
         elif computerWins:
             pygame.time.wait(500)
             highlightWin(mainBoard)
-            BEEP3.play()
+            #BEEP3.play()
             pygame.display.update()
             computerScore += 1
             usedBoxes, mainBoard, playerTurnDone, playerWins, computerWins = boardReset(usedBoxes, mainBoard, playerTurnDone, playerWins, computerWins)
@@ -133,7 +133,7 @@ def main():
             DISPLAYSURF.fill(BGCOLOR)
             pygame.display.update()
             pygame.time.wait(1000)
-            warGameEnding(smallFont, COMPUTERVOICE)
+            warGameEnding(smallFont)
             pygame.display.update()
             usedBoxes, mainBoard, playerTurnDone, playerWins, computerWins = boardReset(usedBoxes, mainBoard, playerTurnDone, playerWins, computerWins)
             tieScore = 0
@@ -561,8 +561,8 @@ def highLightBoxes(mainBoard, scenario):
     
         
 
-def warGameEnding(smallFont, COMPUTERVOICE):
-    COMPUTERVOICE.play()
+def warGameEnding(smallFont):
+    #COMPUTERVOICE.play()
     surfRect = DISPLAYSURF.get_rect()
     DISPLAYSURF.fill(BGCOLOR)
 
