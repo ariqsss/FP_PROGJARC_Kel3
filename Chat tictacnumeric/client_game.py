@@ -131,8 +131,8 @@ def calculate():
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-IP_address = '127.0.0.1'
-Port = 8080
+IP_address = '10.151.254.200'
+Port = 3333
 server.connect((IP_address, Port))
 
 #decision = input("Play the game?(Y/n)")
@@ -146,8 +146,8 @@ while True:
     for socks in read_sockets:
         if socks == server:
             message = socks.recv(2048)
-            #message, load_field = [int(i) for i in socks.recv(2048).decode('utf-8').split('\n')]
-            #load_message = pickle.loads(load_field)
+            message, load_field = [int(i) for i in socks.recv(2048).decode('utf-8').split('\n')]
+            load_message = pickle.loads(load_field)
             print (str(message, 'utf-8'))
         else:
             #while True
