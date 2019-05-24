@@ -52,11 +52,6 @@ def main():
     playerWins = False
     computerWins = False
 
-    BEEP1 = pygame.mixer.Sound('beep2.ogg')
-    BEEP2 = pygame.mixer.Sound('beep3.ogg')
-    BEEP3 = pygame.mixer.Sound('beep1.ogg')
-    COMPUTERVOICE = pygame.mixer.Sound('wargamesclip.ogg')
-
     mainBoard = makeEachBoxFalse(False)
     usedBoxes = makeEachBoxFalse(False)
 
