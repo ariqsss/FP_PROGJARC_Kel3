@@ -132,7 +132,7 @@ def calculate():
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 IP_address = '127.0.0.1'
-Port = 8080
+Port = 3000
 server.connect((IP_address, Port))
 
 #decision = input("Play the game?(Y/n)")

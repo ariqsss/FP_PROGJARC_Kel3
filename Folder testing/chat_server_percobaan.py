@@ -10,7 +10,7 @@ server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 IP_address = '127.0.0.1'
-Port = 8080
+Port = 3000
 server.bind((IP_address, Port)) 
 #bind server ke IP address dengan port tertentu
 server.listen(100)
